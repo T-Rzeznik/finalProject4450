@@ -23,19 +23,19 @@ const client = new MongoClient(uri, {
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-/// Connect to MongoDB
+
 async function connectToDB() {
   try {
     await client.connect();
     console.log("Connected to MongoDB");
   } catch (error) {
     console.error("Error connecting to MongoDB:", error);
-    process.exit(1); // Exit the process if connection fails
+    process.exit(1); 
   }
 }
 
-// Middleware to ensure MongoDB connection before handling requests
-app.use((req, res, next) => {
+
+app.use((req, res, next) => {                                // Middleware to ensure MongoDB connection before handling requests
   if (!client.topology || !client.topology.isConnected()) {
     connectToDB()
       .then(() => next())
