@@ -2,8 +2,7 @@ const express = require("express");
 const readline = require("readline");
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 
-const uri =
-  "mongodb+srv://RWadmin:admin12@cluster0.iwwoeb1.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const uri ="mongodb+srv://RWadmin:admin12@cluster0.iwwoeb1.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -34,11 +33,11 @@ async function connectToDB() {
     console.log("Connected to MongoDB");
   } catch (error) {
     console.error("Error connecting to MongoDB:", error);
-    process.exit(1); // Exit the process if connection fails
+    process.exit(1);
   }
 }
 
-// Middleware to ensure MongoDB connection before handling requests
+                                                                  // Middleware to ensure MongoDB connection before handling requests
 app.use((req, res, next) => {
   if (!client.topology || !client.topology.isConnected()) {
     connectToDB()
